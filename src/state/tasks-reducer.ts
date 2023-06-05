@@ -122,7 +122,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
         case 'ADD-TODOLIST': {
             return {
                 ...state,
-                [action.todolistId]: []
+                [action.todolist.id]: []
             }
         }
         case 'REMOVE-TODOLIST': {
@@ -174,6 +174,12 @@ export const createTaskTC = (todoId: string, title: string) => (dispatch: Dispat
             dispatch(addTaskAC(res.data.data.item))
         })
 }
+// export const changeTaskTitleTC = (id: string, newTitle: string, todolistId: string) => (dispatch: Dispatch) => {
+//     todolistsAPI.updateTask(id, newTitle, todolistId)
+//         .then((res) => {
+//             dispatch(changeTaskTitleAC(id, newTitle, todolistId))
+//         })
+// }
 export const updateTaskTC = (todoId: string, taskId: string, status: TaskStatuses) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
 
     const task = getState().tasks[todoId].find((t) => t.id === taskId)
@@ -194,5 +200,3 @@ export const updateTaskTC = (todoId: string, taskId: string, status: TaskStatuse
             })
     }
 }
-
-////так же  Thunk сделать на todolistIb // DZ
